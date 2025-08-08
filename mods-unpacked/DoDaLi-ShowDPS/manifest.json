@@ -1,0 +1,19 @@
+{
+	"name": "ShowDPS",
+	"namespace": "DoDaLi",
+	"version_number": "1.0.0",
+	"description": "Let's see who is slacking off",
+	"website_url": "ShowDPS",
+	"dependencies": [
+		"Darkly77-Brotils"
+	],
+	"extra": {
+		"godot": {
+			"incompatibilities": [],
+			"authors": ["DoDaLi"],
+			"compatible_mod_loader_version": ["4.1.0"],
+			"compatible_game_version": ["0.8.0.3"],
+			"config_defaults": {}
+		}
+	}
+}

@@ -344,6 +344,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://global/direction.gd"
 }, {
+"base": "VBoxContainer",
+"class": "DmgMeterContainer",
+"language": "GDScript",
+"path": "res://mods-unpacked/lrueckert-DmgMeter/ui/hud/dmg_meter_container.gd"
+}, {
+"base": "HBoxContainer",
+"class": "DmgMeterItem",
+"language": "GDScript",
+"path": "res://mods-unpacked/lrueckert-DmgMeter/ui/hud/dmg_meter_item.gd"
+}, {
 "base": "Effect",
 "class": "DoubleKeyValueEffect",
 "language": "GDScript",
@@ -1717,6 +1727,8 @@ _global_script_class_icons={
 "DifficultyScore": "",
 "DifficultySelection": "",
 "Direction": "",
+"DmgMeterContainer": "",
+"DmgMeterItem": "",
 "DoubleKeyValueEffect": "",
 "DoubleValueEffect": "",
 "Effect": "",
