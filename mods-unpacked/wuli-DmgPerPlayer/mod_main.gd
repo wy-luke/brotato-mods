@@ -1,7 +1,7 @@
 extends Node
 
-const MOD_DIR = "wuli-ScorePerPlayer/"
-const MOD_LOG = "wuli-ScorePerPlayer"
+const MOD_DIR = "wuli-DmgPerPlayer/"
+const MOD_LOG = "wuli-DmgPerPlayer"
 
 var dir = ""
 var ext_dir = ""

@@ -1,8 +1,8 @@
 {
-  "name": "ScorePerPlayer",
+  "name": "DmgPerPlayer",
   "namespace": "wuli",
   "version_number": "1.0.0",
-  "description": "Shows score per player. Support multiplayer.",
+  "description": "Shows damage per player. Support multiplayer.",
   "website_url": "",
   "dependencies": [],
   "extra": {
