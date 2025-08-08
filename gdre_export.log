@@ -1,0 +1,54 @@
+GDRE Tools v1.0.0
+Windows 10.0.26100, NVIDIA GeForce RTX 4070 Ti SUPER, opengl3
+Opening file: D:/Steam/steamapps/common/Brotato/Brotato.pck
+Multiple passing candidates for bytecode version 13:
+3.5.0-stable (a7aad78), 3.2.0-stable (5565f55)
+Choosing only one that matches engine version: 3.5.0-stable (a7aad78).
+Loaded 1503 imported files
+Detected Engine Version: 3.6.0
+Detected Bytecode Revision: 3.5.0-stable (a7aad78)
+Verified 5997 files, 29 files skipped (MD5 hash entry was empty)
+Extracted 6026 files, no errors detected!
+Recreating plugin configs...
+Loading resource strings, this may take a while!!
+Resource strings loaded!
+Saved project config.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     359
+Failed scripts:                         0
+Imported resources for export session:  1503
+Successfully converted:                 1503
+Lossy:                                  0
+Rewrote metadata:                       0
+Non-importable conversions:             0
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+
+
+
+---------------------------------IMPORTANT NOTES----------------------------------
+
+
+Translation Export Incomplete:
+WARNING: Could not recover 232 keys for res://resources/translations/translations.csv
+Saved translations.csv to res://.assets/resources/translations/translations.csv
+
+
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 3.6.0 (steam version) to edit the project.
+GodotSteam can be found here: https://github.com/CoaguCo-Industries/GodotSteam/releases 
+Note: the project may be using a custom version of Godot. Detection for this has not been implemented yet.
+If you find that you have many non-import errors upon opening the project 
+(i.e. scripts or shaders have many errors), use the original game's binary as the export template.
+
+*******************************************************************************
+
