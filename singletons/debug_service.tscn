@@ -5,4 +5,5 @@
 
 [node name="DebugService" type="Node"]
 script = ExtResource( 1 )
+disable_saving = true
 debug_enemies = [ ExtResource( 2 ) ]
