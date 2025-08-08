@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 disable_saving = true
 debug_enemies = [ ExtResource( 2 ) ]
+coop_multiple_keyboard_inputs = true
