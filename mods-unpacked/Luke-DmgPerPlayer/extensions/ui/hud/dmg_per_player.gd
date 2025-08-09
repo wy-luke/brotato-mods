@@ -28,7 +28,7 @@ func _ready() -> void:
 		# 将伤害统计容器添加到数组中
 		dmg_per_player_containers.append(dmg_per_player_container)
 		# 设置伤害统计容器的元素
-		dmg_per_player_containers[i].set_elements(RunData.get_player_weapons(i), i, player_count, true)
+		dmg_per_player_containers[i].set_elements(RunData.get_player_weapons(i), i, true)
 		# 遍历玩家的物品
 		for el in RunData.get_player_items(i):
 			# 如果物品不在伤害统计容器中，并且需要追踪伤害或者物品是炮塔

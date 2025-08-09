@@ -1,12 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_container.gd" type="Script" id=1]
-[ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_item.tscn" type="PackedScene" id=2]
-[ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/total_dmg_display.tscn" type="PackedScene" id=3]
+[ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/total_dmg_display.tscn" type="PackedScene" id=2]
 
 [node name="DmgPerPlayerContainer" type="VBoxContainer"]
 mouse_filter = 2
 alignment = 2
 script = ExtResource( 1 )
-element_scene = ExtResource( 2 )
-total_dmg_scene = ExtResource( 3 )
+total_dmg_scene = ExtResource( 2 )

@@ -349,11 +349,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_container.gd"
 }, {
-"base": "HBoxContainer",
-"class": "DmgPerPlayerItem",
-"language": "GDScript",
-"path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_item.gd"
-}, {
 "base": "Effect",
 "class": "DoubleKeyValueEffect",
 "language": "GDScript",
@@ -1374,7 +1369,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ui/menus/title_screen/title_screen_menus.gd"
 }, {
-"base": "HBoxContainer",
+"base": "VBoxContainer",
 "class": "TotalDmgDisplay",
 "language": "GDScript",
 "path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/total_dmg_display.gd"
@@ -1733,7 +1728,6 @@ _global_script_class_icons={
 "DifficultySelection": "",
 "Direction": "",
 "DmgPerPlayerContainer": "",
-"DmgPerPlayerItem": "",
 "DoubleKeyValueEffect": "",
 "DoubleValueEffect": "",
 "Effect": "",
