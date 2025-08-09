@@ -347,12 +347,12 @@ _global_script_classes=[ {
 "base": "VBoxContainer",
 "class": "DmgMeterContainer",
 "language": "GDScript",
-"path": "res://mods-unpacked/lrueckert-DmgMeter/ui/hud/dmg_meter_container.gd"
+"path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_meter_container.gd"
 }, {
 "base": "HBoxContainer",
 "class": "DmgMeterItem",
 "language": "GDScript",
-"path": "res://mods-unpacked/lrueckert-DmgMeter/ui/hud/dmg_meter_item.gd"
+"path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_meter_item.gd"
 }, {
 "base": "Effect",
 "class": "DoubleKeyValueEffect",

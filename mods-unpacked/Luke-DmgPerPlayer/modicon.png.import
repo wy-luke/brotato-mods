@@ -9,7 +9,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods-unpacked/lrueckert-DmgMeter/modicon.png"
+source_file="res://mods-unpacked/Luke-DmgPerPlayer/modicon.png"
 dest_files=[ "res://.import/modicon.png-c43784c702958b35a3505e30e262553e.stex" ]
 
 [params]
