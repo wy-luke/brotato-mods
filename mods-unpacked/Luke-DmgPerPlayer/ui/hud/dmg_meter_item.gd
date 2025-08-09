@@ -1,4 +1,4 @@
-class_name DmgMeterItem
+class_name DmgPerPlayerItem
 extends HBoxContainer
 
 var item: ItemParentData

@@ -12,7 +12,7 @@ func _ready() -> void:
 	var player_count = RunData.get_player_count()
 	for i in player_count:
 		var player_index = str(i + 1)
-		var dmg_meter_container = _hud.get_node("LifeContainerP%s/DmgMeterContainerP%s" % [player_index, player_index])
+		var dmg_meter_container = _hud.get_node("LifeContainerP%s/DmgPerPlayerContainerP%s" % [player_index, player_index])
 		dmg_meter_containers.append(dmg_meter_container)
 		dmg_meter_containers[i].set_elements(RunData.get_player_weapons(i), i, player_count, true)
 		for el in RunData.get_player_items(i):

@@ -345,12 +345,12 @@ _global_script_classes=[ {
 "path": "res://global/direction.gd"
 }, {
 "base": "VBoxContainer",
-"class": "DmgMeterContainer",
+"class": "DmgPerPlayerContainer",
 "language": "GDScript",
 "path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_meter_container.gd"
 }, {
 "base": "HBoxContainer",
-"class": "DmgMeterItem",
+"class": "DmgPerPlayerItem",
 "language": "GDScript",
 "path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_meter_item.gd"
 }, {
@@ -1727,8 +1727,8 @@ _global_script_class_icons={
 "DifficultyScore": "",
 "DifficultySelection": "",
 "Direction": "",
-"DmgMeterContainer": "",
-"DmgMeterItem": "",
+"DmgPerPlayerContainer": "",
+"DmgPerPlayerItem": "",
 "DoubleKeyValueEffect": "",
 "DoubleValueEffect": "",
 "Effect": "",

@@ -3,7 +3,7 @@
 [ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_meter_container.gd" type="Script" id=1]
 [ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_meter_item.tscn" type="PackedScene" id=2]
 
-[node name="DmgMeterContainer" type="VBoxContainer"]
+[node name="DmgPerPlayerContainer" type="VBoxContainer"]
 mouse_filter = 2
 alignment = 2
 script = ExtResource( 1 )

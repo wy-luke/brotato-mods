@@ -1,4 +1,4 @@
-class_name DmgMeterContainer
+class_name DmgPerPlayerContainer
 extends VBoxContainer
 
 export(PackedScene) var element_scene = null
