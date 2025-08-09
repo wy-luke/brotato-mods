@@ -1,10 +1,27 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_container.gd" type="Script" id=1]
-[ext_resource path="res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/total_dmg_display.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/fonts/actual/base/font_26_outline_thick.tres" type="DynamicFont" id=2]
 
 [node name="DmgPerPlayerContainer" type="VBoxContainer"]
 mouse_filter = 2
 alignment = 2
 script = ExtResource( 1 )
-total_dmg_scene = ExtResource( 2 )
+
+[node name="Wave" type="HBoxContainer" parent="."]
+
+[node name="Label" type="Label" parent="Wave"]
+custom_fonts/font = ExtResource( 2 )
+text = "Wave: "
+
+[node name="Value" type="Label" parent="Wave"]
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Total" type="HBoxContainer" parent="."]
+
+[node name="Label" type="Label" parent="Total"]
+custom_fonts/font = ExtResource( 2 )
+text = "Total: "
+
+[node name="Value" type="Label" parent="Total"]
+custom_fonts/font = ExtResource( 2 )

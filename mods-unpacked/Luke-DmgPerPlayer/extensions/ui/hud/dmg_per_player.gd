@@ -21,7 +21,7 @@ func _ready() -> void:
 
 		for el in RunData.get_player_items(i):
 			if not dmg_per_player_containers[i].items.has(el) && el.tracking_text == "DAMAGE_DEALT" || el.name == "ITEM_BUILDER_TURRET":
-				dmg_per_player_containers[i].add_element(el, i)
+				dmg_per_player_containers[i].add_element(el)
 
 	dmg_per_player_update()
 
