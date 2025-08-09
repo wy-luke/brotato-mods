@@ -5,10 +5,14 @@ extends VBoxContainer
 
 # 导出的 PackedScene 变量，用于实例化元素
 export(PackedScene) var element_scene = null
+# 导出的 PackedScene 变量，用于实例化总伤害显示
+export(PackedScene) var total_dmg_scene = null
 # 存储物品的数组
 var items = []
 # 最大显示的物品数量
 var max_items = 0
+# 总伤害显示实例
+var total_dmg_instance = null
 
 # 设置元素
 func set_elements(elements: Array, player_index: int, player_count: int, replace: bool = true) -> void:
@@ -17,6 +21,12 @@ func set_elements(elements: Array, player_index: int, player_count: int, replace
 	# 如果需要替换，则清空元素
 	if replace:
 		clear_elements()
+	
+	# 实例化总伤害显示
+	if total_dmg_scene:
+		total_dmg_instance = total_dmg_scene.instance()
+		add_child(total_dmg_instance)
+		total_dmg_instance.set_hud_position(player_index)
 
 	# 遍历所有元素并添加
 	for element in elements:
@@ -27,6 +37,8 @@ func set_elements(elements: Array, player_index: int, player_count: int, replace
 func clear_elements() -> void:
 	# 清空物品数组
 	items = []
+	# 清空总伤害显示实例
+	total_dmg_instance = null
 	# 遍历所有子节点并移除
 	for n in get_children():
 		remove_child(n)
@@ -81,11 +93,24 @@ func handle_spawner(element: ItemParentData, player_index: int) -> void:
 func trigger_element_updates() -> void:
 	# 遍历所有子节点并触发更新
 	for child in get_children():
-		child.trigger_update()
-	# 对元素进行排序
-	sort_elements()
-	# 隐藏底部的元素
-	hide_bottom_elements()
+		if child.has_method("trigger_update"):
+			child.trigger_update()
+	# # 对元素进行排序
+	# sort_elements()
+	# # 隐藏底部的元素
+	# hide_bottom_elements()
+	# 更新总伤害
+	update_total_damage()
+
+# 更新总伤害
+func update_total_damage() -> void:
+	if total_dmg_instance:
+		var total_damage = 0
+		for child in get_children():
+			if child.has_method("get_dmg_dealt"):
+				total_damage += child.get_dmg_dealt()
+		total_dmg_instance.set_total_damage(total_damage)
+
 
 # 对元素进行排序
 func sort_elements() -> void:

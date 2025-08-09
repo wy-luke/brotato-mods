@@ -1374,6 +1374,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ui/menus/title_screen/title_screen_menus.gd"
 }, {
+"base": "HBoxContainer",
+"class": "TotalDmgDisplay",
+"language": "GDScript",
+"path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/total_dmg_display.gd"
+}, {
 "base": "Button",
 "class": "TrimmedButton",
 "language": "GDScript",
@@ -1933,6 +1938,7 @@ _global_script_class_icons={
 "TitleScreen": "",
 "TitleScreenBackgroundData": "",
 "TitleScreenMenus": "",
+"TotalDmgDisplay": "",
 "TrimmedButton": "",
 "Turret": "",
 "TurretEffect": "",
