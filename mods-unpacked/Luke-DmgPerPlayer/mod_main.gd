@@ -19,8 +19,8 @@ func _init() -> void:
 
 func install_script_extensions() -> void:
 	extensions_dir_path = mod_dir_path.plus_file("extensions")
-	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("ui/hud/dmg_meter.gd"))
-	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("ui/hud/dmg_meter_positioning.gd"))
+	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("ui/hud/dmg_per_player.gd"))
+	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("ui/hud/dmg_per_player_positioning.gd"))
 
 
 func add_translations() -> void:
@@ -34,5 +34,5 @@ func _ready() -> void:
 		var player_index = str(index + 1)
 		var node_name = "DmgPerPlayerContainerP%s" % player_index
 		var parent_node = "UI/HUD/LifeContainerP%s" % player_index
-		ModLoaderMod.append_node_in_scene(mainSzene, node_name, parent_node, "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_meter_container.tscn")
+		ModLoaderMod.append_node_in_scene(mainSzene, node_name, parent_node, "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_container.tscn")
 	ModLoaderMod.save_scene(mainSzene, "res://main.tscn")
