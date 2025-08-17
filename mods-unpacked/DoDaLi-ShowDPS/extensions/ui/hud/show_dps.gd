@@ -20,8 +20,7 @@ var txt_damage_total_player4: RichTextLabel
 var txt_cur_wave_ = []
 var txt_total_ = []
 		
-func _ready()->void:
-
+func _ready() -> void:
 	show_dps_container = preload("res://mods-unpacked/DoDaLi-ShowDPS/ui/hud/show_dps.tscn").instance()
 	how_dps_hud.margin_bottom = 0
 	how_dps_hud.anchor_bottom = 1
@@ -54,7 +53,7 @@ func _ready()->void:
 	var txt_wave = show_dps_container.get_node("%Damage_Wave");
 	var txt_total = show_dps_container.get_node("%Damage_Total");
 	var txt_space = show_dps_container.get_node("%Damage_Space");
-	if lang == "zh" :
+	if lang == "zh":
 		txt_wave.bbcode_text = "本关伤害:"
 		txt_total.bbcode_text = "总伤害:"
 	else:
@@ -81,9 +80,7 @@ func _ready()->void:
 	
 	
 func _update_stats_ui():
-#	ModLoaderLog.info("_update_stats_ui", BFX_LOG_MOD_MAIN)
-	
-	if wave_timer != null and is_instance_valid(wave_timer) and not is_run_lost:
+	if wave_timer != null and is_instance_valid(wave_timer):
 		var time = ceil(wave_timer.time_left)
 		if time > 0:
 			show_dps_container.visible = true
@@ -97,10 +94,7 @@ func _update_stats_ui():
 			txt_cur_wave_[i].bbcode_text = "P" + str(i + 1) + ": " + str(RunData.player_damage[i]);
 		else:
 			txt_cur_wave_[i].bbcode_text = "P" + str(i + 1) + ": 0"
-#	txt_damage_player1.bbcode_text = "P1: " + str(RunData.player_damage[0]);
-#	txt_damage_player2.bbcode_text = "P2: " + str(RunData.player_damage[1]);
-#	txt_damage_player3.bbcode_text = "P3: " + str(RunData.player_damage[2]);
-#	txt_damage_player4.bbcode_text = "P4: " + str(RunData.player_damage[3]);
+
 	
 	var damage_all = 0
 	for i in RunData.get_player_count():
@@ -110,14 +104,10 @@ func _update_stats_ui():
 	
 	for i in RunData.get_player_count():
 		if RunData.player_damage_total[i] > 0:
-			percent[i] = RunData.player_damage_total[i] * 100 / damage_all
+			if damage_all > 0:
+				percent[i] = RunData.player_damage_total[i] * 100 / damage_all
+			else:
+				percent[i] = 0
 			txt_total_[i].bbcode_text = "P" + str(i + 1) + ": " + str(RunData.player_damage_total[i]) + "  (" + str(percent[i]) + "%)";
 		else:
 			txt_total_[i].bbcode_text = ""
-	
-	
-#	txt_damage_total_player1.bbcode_text = "P1: " + str(RunData.player_damage_total[0]) + "  (" + str(percent[0]) + "%)";
-#	txt_damage_total_player2.bbcode_text = "P2: " + str(RunData.player_damage_total[1]) + "  (" + str(percent[1]) + "%)";
-#	txt_damage_total_player3.bbcode_text = "P3: " + str(RunData.player_damage_total[2]) + "  (" + str(percent[2]) + "%)";
-#	txt_damage_total_player4.bbcode_text = "P4: " + str(RunData.player_damage_total[3]) + "  (" + str(percent[3]) + "%)";
-
