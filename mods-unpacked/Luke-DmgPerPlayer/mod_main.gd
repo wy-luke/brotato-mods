@@ -1,38 +1,21 @@
 extends Node
 
-
 const LUKE_DMGPERPLAYER_DIR := "Luke-DmgPerPlayer"
 const LUKE_DMGPERPLAYER_LOG_NAME := "Luke-DmgPerPlayer:Main"
 
 var mod_dir_path := ""
 var extensions_dir_path := ""
-var translations_dir_path := ""
 
-# Before v6.1.0
 func _init() -> void:
 	mod_dir_path = ModLoaderMod.get_unpacked_dir().plus_file(LUKE_DMGPERPLAYER_DIR)
-	# Add extensions
-	install_script_extensions()
-	# Add translations
-	add_translations()
 
+	install_script_extensions()
 
 func install_script_extensions() -> void:
 	extensions_dir_path = mod_dir_path.plus_file("extensions")
-	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("ui/hud/dmg_per_player.gd"))
-	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("ui/hud/dmg_per_player_positioning.gd"))
-
-
-func add_translations() -> void:
-	translations_dir_path = mod_dir_path.plus_file("translations")
-	# ModLoaderMod.add_translation(translations_dir_path.plus_file(...))
-
+	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("main.gd"))
+	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("singletons/run_data.gd"))
+	ModLoaderMod.install_script_extension(extensions_dir_path.plus_file("entities/units/enemies/enemy.gd"))
+ 
 func _ready() -> void:
 	ModLoaderLog.info("Ready!", LUKE_DMGPERPLAYER_LOG_NAME)
-	var mainSzene = load("res://main.tscn").instance()
-	for index in 4:
-		var player_index = str(index + 1)
-		var node_name = "DmgPerPlayerContainerP%s" % player_index
-		var parent_node = "UI/HUD/LifeContainerP%s" % player_index
-		ModLoaderMod.append_node_in_scene(mainSzene, node_name, parent_node, "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_container.tscn")
-	ModLoaderMod.save_scene(mainSzene, "res://main.tscn")
