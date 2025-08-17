@@ -10,3 +10,4 @@ func _on_EntitySpawner_players_spawned(players: Array) -> void:
 			var dps_container = load("res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_container.tscn").instance()
 			dps_container.name = "DmgPerPlayerContainerP" + player_index_str
 			hud_container.add_child(dps_container)
+			dps_container.init(player.player_index)

@@ -2,7 +2,7 @@
   "name": "DmgPerPlayer",
   "namespace": "Luke",
   "version_number": "0.0.1",
-  "description": "Display Damage of each player during the wave as HUD element",
+  "description": "Display the damage and percentage of each player during the wave.",
   "website_url": "",
   "dependencies": [],
   "extra": {

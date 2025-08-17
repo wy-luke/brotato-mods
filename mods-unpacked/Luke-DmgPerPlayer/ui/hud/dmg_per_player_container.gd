@@ -14,13 +14,11 @@ func _ready() -> void:
 	add_child(timer)
 	timer.start()
 
-	# It might take a frame for the node to be named and in the tree
-	yield(get_tree(), "idle_frame")
-	if name.begins_with("DmgPerPlayerContainerP"):
-		player_index = name.substr(22).to_int() - 1
-	
-	set_hud_position(player_index)
+func init(p_index: int) -> void:
+	player_index = p_index
 
+	var left = p_index == 0 or p_index == 2
+	self.alignment = BoxContainer.ALIGN_BEGIN if left else BoxContainer.ALIGN_END
 
 func _update_display() -> void:
 	if player_index == -1 or player_index >= RunData.get_player_count():
@@ -28,7 +26,3 @@ func _update_display() -> void:
 
 	wave_value_label.text = str(RunData.player_damage[player_index])
 	total_value_label.text = str(RunData.player_damage_total[player_index])
-
-func set_hud_position(p_index: int) -> void:
-	var left = p_index == 0 or p_index == 2
-	self.alignment = BoxContainer.ALIGN_BEGIN if left else BoxContainer.ALIGN_END
