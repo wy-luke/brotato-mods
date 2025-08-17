@@ -1,8 +1,11 @@
 class_name DmgPerPlayerContainer
 extends VBoxContainer
 
-onready var wave_value_label: Label = $Wave/Value
-onready var total_value_label: Label = $Total/Value
+onready var wave_container: HBoxContainer = $Wave
+onready var total_container: HBoxContainer = $Total
+
+onready var wave_damage_label: Label = $Wave/Value
+onready var total_damage_label: Label = $Total/Value
 
 var player_index: int = -1
 
@@ -18,7 +21,8 @@ func init(p_index: int) -> void:
 	player_index = p_index
 
 	var left = p_index == 0 or p_index == 2
-	self.alignment = BoxContainer.ALIGN_BEGIN if left else BoxContainer.ALIGN_END
+	wave_container.alignment = BoxContainer.ALIGN_BEGIN if left else BoxContainer.ALIGN_END
+	total_container.alignment = BoxContainer.ALIGN_BEGIN if left else BoxContainer.ALIGN_END
 
 func _update_display() -> void:
 	if player_index == -1 or player_index >= RunData.get_player_count():
@@ -33,8 +37,7 @@ func _update_display() -> void:
 		if total_wave_damage > 0:
 			wave_percentage = int(float(RunData.player_damage[player_index]) / total_wave_damage * 100)
 		
-		wave_value_label.text = "%s (%s%%)" % [RunData.player_damage[player_index], wave_percentage]
-
+	
 		var total_damage_all_players = 0
 		for i in RunData.get_player_count():
 			total_damage_all_players += RunData.player_damage_total[i]
@@ -43,7 +46,8 @@ func _update_display() -> void:
 		if total_damage_all_players > 0:
 			total_percentage = int(float(RunData.player_damage_total[player_index]) / total_damage_all_players * 100)
 
-		total_value_label.text = "%s (%s%%)" % [RunData.player_damage_total[player_index], total_percentage]
+		wave_damage_label.text = "%s (%s%%)" % [RunData.player_damage[player_index], wave_percentage]
+		total_damage_label.text = "%s (%s%%)" % [RunData.player_damage_total[player_index], total_percentage]
 	else:
-		wave_value_label.text = str(RunData.player_damage[player_index])
-		total_value_label.text = str(RunData.player_damage_total[player_index])
+		wave_damage_label.text = str(RunData.player_damage[player_index])
+		total_damage_label.text = str(RunData.player_damage_total[player_index])
