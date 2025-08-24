@@ -1,15 +1,18 @@
 class_name DmgPerPlayerContainer
 extends VBoxContainer
 
-onready var wave_container: HBoxContainer = $Wave
-onready var total_container: HBoxContainer = $Total
-
-onready var wave_damage_label: Label = $Wave/Value
-onready var total_damage_label: Label = $Total/Value
-
-var player_index: int = -1
+var player_row_scene = preload("res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/player_row.tscn")
+var player_rows: Array
 
 func _ready() -> void:
+	var player_count = RunData.get_player_count()
+	for i in range(player_count):
+		var player_row = player_row_scene.instance()
+		add_child(player_row)
+		player_row.set_player_index(i + 1)
+
+		player_rows.append(player_row)
+
 	var timer := Timer.new()
 	timer.wait_time = 0.5
 	timer.one_shot = false
@@ -17,39 +20,27 @@ func _ready() -> void:
 	add_child(timer)
 	timer.start()
 
-func init(p_index: int) -> void:
-	player_index = p_index
-
-	var left = p_index == 0 or p_index == 2
-	wave_container.alignment = BoxContainer.ALIGN_BEGIN if left else BoxContainer.ALIGN_END
-	total_container.alignment = BoxContainer.ALIGN_BEGIN if left else BoxContainer.ALIGN_END
-
 func _update_display() -> void:
 	var player_count = RunData.get_player_count()
-	if player_index == -1 or player_index >= player_count:
-		return
 
-	var wave_damage = RunData.player_damage[player_index]
-	var total_damage = RunData.player_damage_total[player_index]
-
-	if player_count <= 1:
-		wave_damage_label.text = str(wave_damage)
-		total_damage_label.text = str(total_damage)
-		return
-
-	var wave_damage_all_players = 0
-	var total_damage_all_players = 0
+	var all_players_wave_damage = 0
 	for i in range(player_count):
-		wave_damage_all_players += RunData.player_damage[i]
-		total_damage_all_players += RunData.player_damage_total[i]
-	
-	_set_label_text(wave_damage_label, wave_damage, wave_damage_all_players)
-	_set_label_text(total_damage_label, total_damage, total_damage_all_players)
+		all_players_wave_damage += RunData.player_damage[i]
 
+	var all_players_total_damage = 0
+	for i in range(player_count):
+		all_players_total_damage += RunData.player_damage_total[i]
 
-func _set_label_text(label: Label, damage: int, total_damage: int) -> void:
-	var percentage = 0
-	if total_damage > 0:
-		percentage = int(float(damage) / total_damage * 100)
-	
-	label.text = "%s (%s%%)" % [damage, percentage]
+	for i in range(player_count):
+		var wave_damage = RunData.player_damage[i]
+		var total_damage = RunData.player_damage_total[i]
+
+		var wave_percentage = 0
+		if all_players_wave_damage > 0:
+			wave_percentage = int(float(wave_damage) / all_players_wave_damage * 100)
+
+		var total_percentage = 0
+		if all_players_total_damage > 0:
+			total_percentage = int(float(total_damage) / all_players_total_damage * 100)
+
+		player_rows[i].update_values(wave_damage, wave_percentage, total_damage, total_percentage)
