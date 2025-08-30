@@ -69,5 +69,9 @@ func _update_display() -> void:
 		_update_row(i, wave_damage, wave_percentage, total_damage, total_percentage)
 
 func _update_row(index: int, wave_damage: int, wave_perc: int, total_damage: int, total_perc: int) -> void:
-	player_rows[index].current.text = "%s (%s%%)" % [wave_damage, wave_perc]
-	player_rows[index].total.text = "%s (%s%%)" % [total_damage, total_perc]
+	if RunData.get_player_count() <= 1:
+		player_rows[index].current.text = str(wave_damage)
+		player_rows[index].total.text = str(total_damage)
+	else:
+		player_rows[index].current.text = "%s (%s%%)" % [wave_damage, wave_perc]
+		player_rows[index].total.text = "%s (%s%%)" % [total_damage, total_perc]
