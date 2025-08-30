@@ -1,17 +1,37 @@
 class_name DmgPerPlayerContainer
-extends VBoxContainer
+extends GridContainer
 
-var player_row_scene = preload("res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/player_row.tscn")
-var player_rows: Array
+onready var player_index_label = $PlayerIndex
+onready var current_label = $Current
+onready var total_label = $Total
+
+var player_rows := []
+
 
 func _ready() -> void:
-	var player_count = RunData.get_player_count()
-	for i in range(player_count):
-		var player_row = player_row_scene.instance()
-		add_child(player_row)
-		player_row.set_player_index(i + 1)
+	player_rows.append({
+		"current": current_label,
+		"total": total_label
+	})
 
-		player_rows.append(player_row)
+	var player_count = RunData.get_player_count()
+	if player_count > 1:
+		for i in range(1, player_count):
+			var new_player_index = player_index_label.duplicate()
+			var new_current = current_label.duplicate()
+			var new_total = total_label.duplicate()
+
+			add_child(new_player_index)
+			add_child(new_current)
+			add_child(new_total)
+
+			new_player_index.text = "Player %s :" % (i + 1)
+			_update_row(i, 0, 0, 0, 0)
+			
+			player_rows.append({
+				"current": new_current,
+				"total": new_total
+			})
 
 	var timer := Timer.new()
 	timer.wait_time = 0.5
@@ -32,6 +52,9 @@ func _update_display() -> void:
 		all_players_total_damage += RunData.player_damage_total[i]
 
 	for i in range(player_count):
+		if i >= player_rows.size():
+			break
+			
 		var wave_damage = RunData.player_damage[i]
 		var total_damage = RunData.player_damage_total[i]
 
@@ -42,5 +65,9 @@ func _update_display() -> void:
 		var total_percentage = 0
 		if all_players_total_damage > 0:
 			total_percentage = int(float(total_damage) / all_players_total_damage * 100)
+		
+		_update_row(i, wave_damage, wave_percentage, total_damage, total_percentage)
 
-		player_rows[i].update_values(wave_damage, wave_percentage, total_damage, total_percentage)
+func _update_row(index: int, wave_damage: int, wave_perc: int, total_damage: int, total_perc: int) -> void:
+	player_rows[index].current.text = "%s (%s%%)" % [wave_damage, wave_perc]
+	player_rows[index].total.text = "%s (%s%%)" % [total_damage, total_perc]

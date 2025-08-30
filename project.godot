@@ -344,7 +344,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://global/direction.gd"
 }, {
-"base": "VBoxContainer",
+"base": "GridContainer",
 "class": "DmgPerPlayerContainer",
 "language": "GDScript",
 "path": "res://mods-unpacked/Luke-DmgPerPlayer/ui/hud/dmg_per_player_container.gd"
