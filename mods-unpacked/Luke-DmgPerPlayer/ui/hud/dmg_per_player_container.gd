@@ -24,14 +24,14 @@ func _ready() -> void:
 			add_child(new_player_index)
 			add_child(new_current)
 			add_child(new_total)
-
-			new_player_index.text = "Player %s :" % (i + 1)
-			_update_row(i, 0, 0, 0, 0)
 			
 			player_rows.append({
 				"current": new_current,
 				"total": new_total
 			})
+
+			new_player_index.text = "Player %s :" % (i + 1)
+			_update_row(i, 0, 0, 0, 0)
 
 	var timer := Timer.new()
 	timer.wait_time = 0.5
