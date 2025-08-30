@@ -1,7 +1,7 @@
 {
   "name": "DmgPerPlayer",
   "namespace": "Luke",
-  "version_number": "1.0.0",
+  "version_number": "2.0.0",
   "description": "Display the damage and damage percentage of each player.",
   "website_url": "",
   "dependencies": [],
