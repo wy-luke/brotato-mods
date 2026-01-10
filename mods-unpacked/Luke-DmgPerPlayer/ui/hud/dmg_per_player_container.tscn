@@ -30,7 +30,7 @@ margin_right = 260.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
-text = "Current"
+text = "LUKE_DMGPERPLAYER_CURRENT"
 align = 2
 
 [node name="Header3" type="Label" parent="."]
@@ -39,7 +39,7 @@ margin_right = 400.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
-text = "Total"
+text = "LUKE_DMGPERPLAYER_TOTAL"
 align = 2
 
 [node name="PlayerIndex" type="Label" parent="."]
