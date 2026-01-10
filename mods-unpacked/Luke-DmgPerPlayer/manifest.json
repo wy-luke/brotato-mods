@@ -1,7 +1,7 @@
 {
   "name": "DmgPerPlayer",
   "namespace": "Luke",
-  "version_number": "2.2.0",
+  "version_number": "2.3.0",
   "description": "Displays damage and percentage for every player, for both the current wave and the entire run. Find out who is slacking off!",
   "website_url": "https://github.com/wy-luke/Brotato-DmgPerPlayer",
   "dependencies": [],
