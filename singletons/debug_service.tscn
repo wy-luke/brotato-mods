@@ -6,6 +6,8 @@
 [node name="DebugService" type="Node"]
 script = ExtResource( 1 )
 custom_wave_duration = 10
+no_fullscreen_on_launch = true
+unlock_all_chars = true
 disable_saving = true
 debug_enemies = [ ExtResource( 2 ) ]
 coop_multiple_keyboard_inputs = true
