@@ -1,2 +1,15 @@
-.import
+**
+
+!.trae
+!.trae/**
+
+!.vscode
+!.vscode/**
+
+!mods-unpacked
+!mods-unpacked/**
+
+!singletons
+!singletons/debug_service.tscn
+
 .DS_Store

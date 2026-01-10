@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://singletons/debug_service.gd" type="Script" id=1]
+[ext_resource path="res://zones/common/debug/debug_unit_1.tres" type="Resource" id=2]
+
+[node name="DebugService" type="Node"]
+script = ExtResource( 1 )
+custom_wave_duration = 10
+disable_saving = true
+debug_enemies = [ ExtResource( 2 ) ]
+coop_multiple_keyboard_inputs = true
+no_skin = true
