@@ -8,6 +8,6 @@ func reset(restart: bool = false):
 	player_damage = [0, 0, 0, 0]
 	player_damage_total = [0, 0, 0, 0]
 
-func on_wave_start():
-	.on_wave_start()
+func on_wave_start(timer: WaveTimer) -> void:
+	.on_wave_start(timer)
 	player_damage = [0, 0, 0, 0]
