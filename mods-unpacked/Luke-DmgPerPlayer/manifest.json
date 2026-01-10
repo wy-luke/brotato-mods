@@ -1,16 +1,16 @@
 {
   "name": "DmgPerPlayer",
   "namespace": "Luke",
-  "version_number": "2.0.0",
-  "description": "Display the damage and damage percentage of each player.",
-  "website_url": "",
+  "version_number": "2.1.0",
+  "description": "Displays damage and percentage for every player, for both the current wave and the entire run. Find out who is slacking off!",
+  "website_url": "https://github.com/wy-luke/Brotato-DmgPerPlayer",
   "dependencies": [],
   "extra": {
     "godot": {
       "authors": ["Luke"],
       "tags": ["damage", "damage meter", "GUI"],
       "compatible_mod_loader_version": ["6.2.0"],
-      "compatible_game_version": ["1.1.11.3"]
+      "compatible_game_version": ["1.1.13.2"]
     }
   }
 }

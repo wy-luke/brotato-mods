@@ -12,4 +12,6 @@
 !singletons
 !singletons/debug_service.tscn
 
+!README.md
+
 .DS_Store
