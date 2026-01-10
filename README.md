@@ -1,6 +1,6 @@
 # Brotato-DmgPerPlayer
 
-![DmgPerPlayer](/mods-unpacked/Luke-DmgPerPlayer/icon.jpeg)
+![DmgPerPlayer](https://images.steamusercontent.com/ugc/9600964514325289159/A20C313D2BEC60D8107C1EB3F5481BCFEB079704/?imw=200&imh=200&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
 
 Displays damage and percentage for every player, for both the current wave and the entire run.
 
