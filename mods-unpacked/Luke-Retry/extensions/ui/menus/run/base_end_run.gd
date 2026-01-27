@@ -25,11 +25,6 @@ func _on_RetryWaveButton_pressed() -> void:
 		return
 	_button_pressed = true
 
-	if RunData.start_wave_state.empty() and RunData.luke_retry_start_wave_state.empty():
-		push_error("Luke-Retry: no wave state available, cannot retry wave")
-		_button_pressed = false
-		return
-
 	RunData.reset_to_start_wave_state()
 	RunData.retries += 1
-	var _error = get_tree().change_scene(MenuData.game_scene)
+	get_tree().change_scene(MenuData.game_scene)
