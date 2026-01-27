@@ -20,6 +20,6 @@ func _ready() -> void:
 	ModLoaderLog.info("Ready!", LUKE_DMGPERPLAYER_LOG_NAME)
 
 func add_translations() -> void:
-  translations_dir_path = mod_dir_path.plus_file("translations")
-  ModLoaderMod.add_translation(translations_dir_path.plus_file("translations.en.translation"))
-  ModLoaderMod.add_translation(translations_dir_path.plus_file("translations.zh_Hans_CN.translation"))
+	translations_dir_path = mod_dir_path.plus_file("translations")
+	ModLoaderMod.add_translation(translations_dir_path.plus_file("translations.en.translation"))
+	ModLoaderMod.add_translation(translations_dir_path.plus_file("translations.zh_Hans_CN.translation"))
