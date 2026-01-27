@@ -26,3 +26,22 @@ func reset(restart: bool = false):
 func on_wave_start(timer: WaveTimer) -> void:
 	player_damage = _create_player_array()
 	.on_wave_start(timer)
+
+func get_state() -> Dictionary:
+	var state =.get_state()
+	state["luke_player_damage"] = player_damage.duplicate()
+	state["luke_player_damage_total"] = player_damage_total.duplicate()
+	return state
+
+func resume_from_state(state: Dictionary) -> void:
+	.resume_from_state(state)
+	
+	if state.has("luke_player_damage"):
+		player_damage = state.luke_player_damage.duplicate()
+	else:
+		player_damage = _create_player_array()
+	
+	if state.has("luke_player_damage_total"):
+		player_damage_total = state.luke_player_damage_total.duplicate()
+	else:
+		player_damage_total = _create_player_array()
