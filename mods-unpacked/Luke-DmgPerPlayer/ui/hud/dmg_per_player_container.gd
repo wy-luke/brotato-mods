@@ -9,29 +9,36 @@ var player_rows := []
 
 
 func _ready() -> void:
-	player_rows.append({
-		"current": current_label,
-		"total": total_label
-	})
-
 	var player_count := RunData.get_player_count()
-	for i in range(1, player_count):
-		var new_player_index = player_index_label.duplicate()
-		var new_current = current_label.duplicate()
-		var new_total = total_label.duplicate()
+	for i in range(player_count):
+		_create_player_row(i)
+	_setup_update_timer()
 
-		add_child(new_player_index)
-		add_child(new_current)
-		add_child(new_total)
-		
-		player_rows.append({
-			"current": new_current,
-			"total": new_total
-		})
+func _create_player_row(index: int) -> void:
+	var player_index: Label
+	var current: Label
+	var total: Label
 
-		new_player_index.text = "Player %s :" % (i + 1)
-		_update_row(i, 0, 0, 0, 0)
+	if index == 0:
+		player_index = player_index_label
+		current = current_label
+		total = total_label
+	else:
+		player_index = player_index_label.duplicate()
+		current = current_label.duplicate()
+		total = total_label.duplicate()
+		add_child(player_index)
+		add_child(current)
+		add_child(total)
+		player_index.text = "P%s :" % (index + 1)
 
+	player_rows.append({
+		"current": current,
+		"total": total
+	})
+	_update_row(index, 0, 0, 0, 0)
+
+func _setup_update_timer() -> void:
 	var timer := Timer.new()
 	timer.wait_time = 0.5
 	timer.one_shot = false
@@ -59,14 +66,27 @@ func _update_display() -> void:
 		
 		_update_row(i, wave_damage, wave_perc, total_damage, total_perc)
 
+func _update_row(index: int, wave_damage: int, wave_perc: int, total_damage: int, total_perc: int) -> void:
+	var row = player_rows[index]
+	var wave_str := _format_number(wave_damage)
+	var total_str := _format_number(total_damage)
+	if RunData.get_player_count() <= 1:
+		row.current.text = wave_str
+		row.total.text = total_str
+	else:
+		row.current.text = "%s (%s%%)" % [wave_str, wave_perc]
+		row.total.text = "%s (%s%%)" % [total_str, total_perc]
+
 func _calc_percentage(value: int, total: int) -> int:
 	return int(float(value) / total * 100) if total > 0 else 0
 
-func _update_row(index: int, wave_damage: int, wave_perc: int, total_damage: int, total_perc: int) -> void:
-	var row = player_rows[index]
-	if RunData.get_player_count() <= 1:
-		row.current.text = str(wave_damage)
-		row.total.text = str(total_damage)
-	else:
-		row.current.text = "%s (%s%%)" % [wave_damage, wave_perc]
-		row.total.text = "%s (%s%%)" % [total_damage, total_perc]
+
+# Format large numbers with k/m/b suffixes (starting at 100k, 100m, 100b)
+func _format_number(value: int) -> String:
+	if value >= 100000000000:
+		return "%.1fb" % (value / 1000000000.0)
+	elif value >= 100000000:
+		return "%.1fm" % (value / 1000000.0)
+	elif value >= 100000:
+		return "%.1fk" % (value / 1000.0)
+	return str(value)
