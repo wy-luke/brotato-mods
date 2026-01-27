@@ -41,31 +41,3 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 text = "LUKE_DMGPERPLAYER_TOTAL"
 align = 2
-
-[node name="PlayerIndex" type="Label" parent="."]
-margin_top = 35.0
-margin_right = 41.0
-margin_bottom = 66.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-text = "P1 :"
-
-[node name="Current" type="Label" parent="."]
-margin_left = 61.0
-margin_top = 35.0
-margin_right = 462.0
-margin_bottom = 66.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-text = "0 (0%)"
-align = 2
-
-[node name="Total" type="Label" parent="."]
-margin_left = 482.0
-margin_top = 35.0
-margin_right = 848.0
-margin_bottom = 66.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-text = "0 (0%)"
-align = 2

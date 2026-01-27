@@ -1,46 +1,35 @@
 class_name DmgPerPlayerContainer
 extends GridContainer
 
-onready var player_index_label = $PlayerIndex
-onready var current_label = $Current
-onready var total_label = $Total
+const FONT = preload("res://resources/fonts/actual/base/font_26_outline_thick.tres")
+const UPDATE_INTERVAL := 0.5
 
 var player_rows := []
 
 
 func _ready() -> void:
-	var player_count := RunData.get_player_count()
-	for i in range(player_count):
-		_create_player_row(i)
+	for i in range(RunData.get_player_count()):
+		player_rows.append(_create_row(i))
 	_setup_update_timer()
 
-func _create_player_row(index: int) -> void:
-	var player_index: Label
-	var current: Label
-	var total: Label
+func _create_row(index: int) -> Dictionary:
+	var _player_index := _create_label("P%s :" % (index + 1), HALIGN_LEFT)
+	var current := _create_label("0", HALIGN_RIGHT)
+	var total := _create_label("0", HALIGN_RIGHT)
+	return {"current": current, "total": total}
 
-	if index == 0:
-		player_index = player_index_label
-		current = current_label
-		total = total_label
-	else:
-		player_index = player_index_label.duplicate()
-		current = current_label.duplicate()
-		total = total_label.duplicate()
-		add_child(player_index)
-		add_child(current)
-		add_child(total)
-		player_index.text = "P%s :" % (index + 1)
-
-	player_rows.append({
-		"current": current,
-		"total": total
-	})
-	_update_row(index, 0, 0, 0, 0)
+func _create_label(text: String, align: int) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.align = align
+	label.size_flags_horizontal = SIZE_EXPAND_FILL
+	label.add_font_override("font", FONT)
+	add_child(label)
+	return label
 
 func _setup_update_timer() -> void:
 	var timer := Timer.new()
-	timer.wait_time = 0.5
+	timer.wait_time = UPDATE_INTERVAL
 	timer.one_shot = false
 	timer.connect("timeout", self, "_update_display")
 	add_child(timer)
