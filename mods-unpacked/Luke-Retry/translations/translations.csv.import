@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://mods-unpacked/Luke-Retry/translations/translations.en.translation", "res://mods-unpacked/Luke-Retry/translations/translations.zh_Hans_CN.translation" ]
+
+source_file="res://mods-unpacked/Luke-Retry/translations/translations.csv"
+dest_files=[ "res://mods-unpacked/Luke-Retry/translations/translations.en.translation", "res://mods-unpacked/Luke-Retry/translations/translations.zh_Hans_CN.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
