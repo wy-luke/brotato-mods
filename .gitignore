@@ -14,4 +14,8 @@
 
 !README.md
 
+!scripts
+!scripts/**
+scripts/dist
+
 .DS_Store
