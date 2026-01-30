@@ -7,7 +7,7 @@ func _ready() -> void:
 	_add_retry_wave_button()
 
 func _add_retry_wave_button() -> void:
-	if RunData.run_won or RunData.current_wave <= 1:
+	if RunData.current_wave <= 1:
 		return
 
 	_retry_wave_button = _restart_button.duplicate()

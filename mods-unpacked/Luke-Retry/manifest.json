@@ -1,7 +1,7 @@
 {
   "name": "Retry",
   "namespace": "Luke",
-  "version_number": "1.0.0",
+  "version_number": "1.0.1",
   "description": "Adds a 'Retry Wave' button to the game over screen, allowing you to restart the current wave instead of the entire run.",
   "website_url": "",
   "dependencies": [],
