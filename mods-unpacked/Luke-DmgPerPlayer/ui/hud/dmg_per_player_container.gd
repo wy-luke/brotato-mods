@@ -2,10 +2,11 @@ class_name DmgPerPlayerContainer
 extends GridContainer
 
 const UPDATE_INTERVAL := 0.5
-const MVP_COLOR := Color(1.0, 0.84, 0.0) # Gold
-const NORMAL_COLOR := Color.white
+const MVP_COLOR := Color(1.0, 0.85, 0.0) # 金色
 
 var player_rows := []
+var _current_mvp_index := -1
+var _mvp_tween: Tween
 
 onready var _template_index := $Index
 onready var _template_current := $Current
@@ -19,6 +20,8 @@ func _ready() -> void:
 	for i in range(RunData.get_player_count()):
 		player_rows.append(_create_row(i))
 	
+	_mvp_tween = Tween.new()
+	add_child(_mvp_tween)
 	_setup_update_timer()
 
 
@@ -49,7 +52,7 @@ func _update_display() -> void:
 	var player_count := RunData.get_player_count()
 	var all_wave_damage := 0
 	var all_total_damage := 0
-	var mvp_index := 0
+	var mvp_index := -1
 	var max_total := 0
 
 	for i in player_count:
@@ -60,6 +63,24 @@ func _update_display() -> void:
 			max_total = dmg
 			mvp_index = i
 
+	if player_count <= 1 or max_total <= 0:
+		mvp_index = -1
+
+	if mvp_index != _current_mvp_index:
+		if _current_mvp_index >= 0 and _current_mvp_index < player_rows.size():
+			var old_row = player_rows[_current_mvp_index]
+			old_row.index.modulate = Color.white
+			old_row.current.modulate = Color.white
+			old_row.total.modulate = Color.white
+			old_row.index.rect_scale = Vector2.ONE
+			old_row.current.rect_scale = Vector2.ONE
+			old_row.total.rect_scale = Vector2.ONE
+		
+		if mvp_index >= 0 and mvp_index < player_rows.size():
+			_play_mvp_flash_animation(player_rows[mvp_index])
+		
+		_current_mvp_index = mvp_index
+
 	for i in player_count:
 		if i >= player_rows.size():
 			break
@@ -67,19 +88,13 @@ func _update_display() -> void:
 		var total_damage: int = RunData.player_damage_total[i]
 		var wave_perc := _calc_percentage(wave_damage, all_wave_damage)
 		var total_perc := _calc_percentage(total_damage, all_total_damage)
-		var is_mvp: bool = (i == mvp_index and player_count > 1 and max_total > 0)
 		
-		_update_row(i, wave_damage, wave_perc, total_damage, total_perc, is_mvp)
+		_update_row(i, wave_damage, wave_perc, total_damage, total_perc)
 
-func _update_row(index: int, wave_damage: int, wave_perc: int, total_damage: int, total_perc: int, is_mvp: bool = false) -> void:
+func _update_row(index: int, wave_damage: int, wave_perc: int, total_damage: int, total_perc: int) -> void:
 	var row = player_rows[index]
 	var wave_str := _format_number(wave_damage)
 	var total_str := _format_number(total_damage)
-	var color := MVP_COLOR if is_mvp else NORMAL_COLOR
-	
-	row.index.add_color_override("font_color", color)
-	row.current.add_color_override("font_color", color)
-	row.total.add_color_override("font_color", color)
 	
 	if RunData.get_player_count() <= 1:
 		row.current.text = wave_str
@@ -91,8 +106,6 @@ func _update_row(index: int, wave_damage: int, wave_perc: int, total_damage: int
 func _calc_percentage(value: int, total: int) -> int:
 	return int(float(value) / total * 100) if total > 0 else 0
 
-
-# Format large numbers with k/m/b suffixes (starting at 100k, 100m, 100b)
 func _format_number(value: int) -> String:
 	if value >= 100000000000:
 		return "%.1fb" % (value / 1000000000.0)
@@ -101,3 +114,19 @@ func _format_number(value: int) -> String:
 	elif value >= 100000:
 		return "%.1fk" % (value / 1000.0)
 	return str(value)
+
+func _play_mvp_flash_animation(row: Dictionary) -> void:
+	_mvp_tween.stop_all()
+	
+	var scale_up := Vector2(1.15, 1.15)
+	var labels := [row.index, row.current, row.total]
+	
+	for label in labels:
+		label.modulate = MVP_COLOR
+		label.rect_scale = scale_up
+		label.rect_pivot_offset = label.rect_size / 2
+	
+	for label in labels:
+		_mvp_tween.interpolate_property(label, "rect_scale", scale_up, Vector2.ONE, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	
+	_mvp_tween.start()
